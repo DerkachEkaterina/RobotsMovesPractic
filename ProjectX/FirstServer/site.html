@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Управление роботом</title>
+  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=aIs5AVDx-8SjQ6HeKKP7bZo5q8TkByUevi5q7rHyvHTVk24bPNTvMdxqsXxL2ZiTgKe2XzXQEzMLEeAXL-FUUrR1zkxEg8SeBYDXu1jMM0ruPuBGP1TzGUQQpVksWq9eI6XhI_KNdBczw5yu7rgDcA" charset="UTF-8"></script><style>
+    ul.hr {
+     margin: 0; /* Обнуляем значение отступов */
+     padding: 4px; /* Значение полей */
+    }
+    ul.hr li {
+     display: inline; /* Отображать как строчный элемент */
+     margin-right: 5px; /* Отступ слева */
+     border: 1px solid #000; /* Рамка вокруг текста */
+     padding: 3px; /* Поля вокруг текста */
+    }
+
+</style>
+ </head>
+ <body>
+ </body>
+<div>
+    <form style="text-align: center">
+        <h1>Введите мощность</h1> <input type="number" id="power" name="power" min="1" max="255" value="" onchange="set_power(value)"/>
+    </form>
+    <h1 style="text-align: center">Управление туловищем</h1>
+    <form style="text-align: center">
+        <input type="button" alt = "0" style="height:100px;width:200px" value="Вверх" onclick="set_post(0)">
+    </form>
+    <ul class="hr" style="text-align: center">
+        <form>
+            <input type="button" alt = "1" style="height:100px;width:200px" value="Влево" onclick="set_post(1)">
+            <input type="button" alt = "2" style="height:100px;width:200px" value="Вниз" onclick="set_post(2)">
+            <input type="button" alt = "3" style="height:100px;width:200px" value="Вправо" onclick="set_post(3)">
+        </form>
+        
+    </ul>
+
+    <h1 style="text-align: center">Управление головой</h1>
+    <ul class="hr" style="text-align: center">
+        <form>
+            <input type="button" alt = "4" style="height:100px;width:200px" value="Влево" onclick="set_post(4)">
+            <input type="button" alt = "5" style="height:100px;width:200px" value="Вправо" onclick="set_post(5)">
+        </form>
+        
+    </ul>
+</div>
+ <script>
+    var request=new XMLHttpRequest();
+    var pow;
+    function set_power(p){
+        pow = p;
+    }
+  function set_post(a) {
+      
+    alert("Вы передали " + a + " " + pow);
+      request.open("POST", "http://127.0.0.1:8080");
+      request.send(a, pow);
+  }
+</script>
+</html>
